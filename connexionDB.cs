@@ -1,0 +1,120 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TRAVAIL_PROGRAMMATION_AVANCEE
+{
+    internal class connexionDB
+    {
+        private OleDbConnection conn;
+        public connexionDB()
+        {
+            // lachaine de connexion a la base de donnees
+            conn = new OleDbConnection(@"Provider=SQLOLEDB; Data Source=.; Initial Catalog=GestionBoutique; User ID=sa; Password=jacques@server;Persist Security Info = false");
+        }
+
+
+
+        public OleDbConnection GetConnexion()
+        {
+            if (conn.State != ConnectionState.Open)
+                conn.Open();
+
+            return conn;
+        }
+
+        public void FermerConnexion()
+        {
+            if (conn.State != ConnectionState.Closed)
+                conn.Close();
+        }
+
+        public void ExecuterCommande(string requete, string messageSucces)
+        {
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                    conn.Open();
+
+                OleDbCommand cmd = new OleDbCommand(requete, conn);
+                cmd.CommandType = CommandType.Text;
+
+                int lignesAffectees = cmd.ExecuteNonQuery();
+
+                if (lignesAffectees > 0)
+                {
+                    MessageBox.Show(
+                        messageSucces,
+                        "Succès",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                }
+            }
+            catch
+            {
+                MessageBox.Show(
+                    "Erreur lors de l'exécution de la commande",
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+            finally
+            {
+                if (conn.State != ConnectionState.Closed)
+                    conn.Close();
+            }
+        }
+        public void InsererVenteAvecPlusieursProduitsSimple(
+        int idClient,
+        string produits,
+        string messageSucces
+)
+        {
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                    conn.Open();
+
+                // Construction de la requête SQL simple
+                string requete =
+                    "EXEC InsererVenteAvecPlusieursProduits " +
+                    idClient + ", '" + produits + "'";
+
+                OleDbCommand cmd = new OleDbCommand(requete, conn);
+                cmd.CommandType = CommandType.Text;
+
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show(
+                    messageSucces,
+                    "Succès",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+            finally
+            {
+                if (conn.State != ConnectionState.Closed)
+                    conn.Close();
+            }
+
+
+        }
+    }
+}
