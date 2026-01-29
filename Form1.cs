@@ -137,7 +137,7 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
             //la connexion a la base de donnees
             try
             {
-                connexion.ConnectionString = @"Provider=SQLOLEDB;Data Source=.; Initial Catalog=Boutique;User ID=sa; password=jacques@2004;Persist Security Info=false";
+                connexion.ConnectionString = @"Provider=SQLOLEDB;Data Source=.; Initial Catalog=GestionBoutique;User ID=sa; password=jacques@2004;Persist Security Info=false";
                 connexion.Open();
             }
             catch (Exception ex)

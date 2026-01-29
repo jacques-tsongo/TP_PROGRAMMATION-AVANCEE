@@ -15,7 +15,7 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
         public connexionDB()
         {
             // lachaine de connexion a la base de donnees
-            conn = new OleDbConnection(@"Provider=SQLOLEDB; Data Source=.; Initial Catalog=GestionBoutique; User ID=sa; Password=jacques@server;Persist Security Info = false");
+            conn = new OleDbConnection(@"Provider=SQLOLEDB; Data Source=.; Initial Catalog=GestionBoutique; Integrated Security=SSPI; Persist Security Info=False;");
         }
 
 

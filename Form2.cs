@@ -38,8 +38,11 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
         connexionDB connexion = new connexionDB();
         private void enreg_Click(object sender, EventArgs e)
         {
-            connexionDB cmd = new connexionDB();
-            cmd.ExecuterCommande("INSERT INTO Clients(Nom,Adresse) VALUES('" + textBox2.Text + "','" + textBox3.Text + "')", "Client enregistré avec Succes");
+            OleDbConnection conn = connexion.GetConnexion();
+
+            string req = "INSERT INTO Clients(Nom,Adresse) VALUES('" + textBox2.Text + "','" + textBox3.Text + "')";
+            OleDbCommand cmd = new OleDbCommand( (req + "Client enregistré avec Succes"),conn);
+            
             multiFonctions("SELECT * FROM Clients order by nom asc");
         }
 
