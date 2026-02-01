@@ -2,25 +2,28 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace TRAVAIL_PROGRAMMATION_AVANCEE
 {
     internal class connexionDB
     {
-        private OleDbConnection conn;
+        private SqlConnection conn;
         public connexionDB()
         {
             // lachaine de connexion a la base de donnees
-            conn = new OleDbConnection(@"Provider=SQLOLEDB; Data Source=.; Initial Catalog=GestionBoutique; Integrated Security=SSPI; Persist Security Info=False;");
+            conn = new SqlConnection(@"Data Source=.; Initial Catalog=GestionBoutique; Integrated Security=True;");
+
         }
 
 
 
-        public OleDbConnection GetConnexion()
+        public SqlConnection GetConnexion()
         {
             if (conn.State != ConnectionState.Open)
                 conn.Open();
@@ -41,7 +44,7 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
                 if (conn.State != ConnectionState.Open)
                     conn.Open();
 
-                OleDbCommand cmd = new OleDbCommand(requete, conn);
+                SqlCommand cmd = new SqlCommand(requete, conn);
                 cmd.CommandType = CommandType.Text;
 
                 int lignesAffectees = cmd.ExecuteNonQuery();
@@ -87,7 +90,7 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
                     "EXEC InsererVenteAvecPlusieursProduits " +
                     idClient + ", '" + produits + "'";
 
-                OleDbCommand cmd = new OleDbCommand(requete, conn);
+                SqlCommand cmd = new SqlCommand(requete, conn);
                 cmd.CommandType = CommandType.Text;
 
                 cmd.ExecuteNonQuery();

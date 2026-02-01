@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.OleDb;
 using System.Windows.Forms;
 
 namespace TRAVAIL_PROGRAMMATION_AVANCEE
@@ -131,14 +132,15 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
 
 
         // la creation de la varaible de connexion
-        OleDbConnection connexion = new OleDbConnection();
+        SqlConnection connexion= new SqlConnection();
         private void Form1_Load(object sender, EventArgs e)
         {
             //la connexion a la base de donnees
             try
             {
-                connexion.ConnectionString = @"Provider=SQLOLEDB;Data Source=.; Initial Catalog=GestionBoutique;User ID=sa; password=jacques@2004;Persist Security Info=false";
+                connexion = new SqlConnection(@"Data Source=.; Initial Catalog=GestionBoutique; Integrated Security=True;");
                 connexion.Open();
+                //MessageBox.Show("Connexion a la base de donnees reussie !");
             }
             catch (Exception ex)
             {

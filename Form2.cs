@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -38,10 +39,10 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
         connexionDB connexion = new connexionDB();
         private void enreg_Click(object sender, EventArgs e)
         {
-            OleDbConnection conn = connexion.GetConnexion();
+            SqlConnection conn = connexion.GetConnexion();
 
             string req = "INSERT INTO Clients(Nom,Adresse) VALUES('" + textBox2.Text + "','" + textBox3.Text + "')";
-            OleDbCommand cmd = new OleDbCommand( (req + "Client enregistré avec Succes"),conn);
+            SqlCommand cmd = new SqlCommand( (req + "Client enregistré avec Succes"),conn);
             
             multiFonctions("SELECT * FROM Clients order by nom asc");
         }
@@ -49,12 +50,12 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
         // declaration d'une methode qui me sert de faire plusieurs fonctions de crud
         void multiFonctions(string requete)
         {
-            OleDbConnection con = connexion.GetConnexion();
+            SqlConnection con = connexion.GetConnexion();
 
             // string requete = "SELECT * FROM Clients";
-            OleDbCommand cmd = new OleDbCommand(requete, con);
+            SqlCommand cmd = new SqlCommand(requete, con);
 
-            OleDbDataReader reader = cmd.ExecuteReader();
+            SqlDataReader reader = cmd.ExecuteReader();
 
             reader.Read();
 
