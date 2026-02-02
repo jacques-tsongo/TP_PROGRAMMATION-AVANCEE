@@ -39,16 +39,15 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
         connexionDB connexion = new connexionDB();
         private void enreg_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = connexion.GetConnexion();
-
-            string req = "INSERT INTO Clients(Nom,Adresse) VALUES('" + textBox2.Text + "','" + textBox3.Text + "')";
-            SqlCommand cmd = new SqlCommand( (req + "Client enregistré avec Succes"),conn);
-            
+            connexionDB commandeINSERT = new connexionDB();   // on instacie le constructeur pour creer un objet
+            // la commande pour inserer les donnees dans la base de donnees
+            connexion.ExecuterCommande("INSERT INTO Clients(Nom,Adresse) VALUES('" + textBox2.Text + "','" + textBox3.Text + "')" , "Client enregistré avec succès");
+            // apres l'insertion on affiche les donnees dans le tableau
             multiFonctions("SELECT * FROM Clients order by nom asc");
         }
 
         // declaration d'une methode qui me sert de faire plusieurs fonctions de crud
-        void multiFonctions(string requete)
+        public void multiFonctions(string requete)
         {
             SqlConnection con = connexion.GetConnexion();
 
@@ -95,13 +94,15 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
 
         private void suppr_Click(object sender, EventArgs e)
         {
-            string deletedObject = Interaction.InputBox("entrer le nom a supprimer");
+            // la suppression des donnees en recuperant le nom avec un composant de visual basic
+            string deletedObject = Interaction.InputBox("ENTRER LE NOM DU CLIENT A SUPPRIMER");
             multiFonctions("delete  from Clients where nom = '"+ deletedObject +"' ");
             multiFonctions("select * from Clients order by nom asc");
         }
 
         private void modif_Click(object sender, EventArgs e)  // on cree un evenement de click
         {
+            // il s'agit de la modification des donnees avec un requete sql puis reafficher les donnes
             multiFonctions("update Clients set nom ='" + textBox2.Text + "', adresse = '" + textBox3.Text + "' where IdClient = '"+ int.Parse(textBox1.Text)+"' "); // la on vient de faire la mise a jour (modeification) des donnees
             multiFonctions("select * from Clients order by nom asc");
         }

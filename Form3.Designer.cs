@@ -67,6 +67,7 @@
             this.enreg.TabIndex = 1;
             this.enreg.Text = "Enregistrer";
             this.enreg.UseVisualStyleBackColor = false;
+            this.enreg.Click += new System.EventHandler(this.enreg_Click);
             // 
             // modif
             // 
