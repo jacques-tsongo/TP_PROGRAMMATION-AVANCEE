@@ -73,14 +73,6 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
             reader.Close();
         }
 
-        // la methode qui vide le champs apres insertion ou miase ajour
-        public void viderChamps()
-        {
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-        }
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0) // on verifie si la ligne clickee contient des contenues

@@ -68,5 +68,22 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
 
             reader.Close();
         }
+
+        private void suppr_Click(object sender, EventArgs e)
+        {
+            multiFonctions("update Produits set Description ='" + textBox1.Text + "', Prix_unitaire_de_vente = '" + textBox2.Text + "' where IdProduit = '" + int.Parse(id_produit.Text) + "' "); // la on vient de faire la mise a jour (modeification) des donnees
+            multiFonctions("select * from Produits");
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0) // on verifie si la ligne clickee contient des contenues
+            {
+                var selectedRow = dataGridView1.SelectedRows[0];   // puis on chargent tout les contenues dans une variable 
+                id_produit.Text = selectedRow.Cells[0].Value.ToString(); // on charge l'id du client cible
+                textBox1.Text = selectedRow.Cells[1].Value.ToString(); // la on passe dans chaque champ la  valeur y relatif
+                textBox2.Text = selectedRow.Cells[2].Value.ToString(); // la on passe dans chaque champ la  valeur y relatif
+            }
+        }
     }
 }
