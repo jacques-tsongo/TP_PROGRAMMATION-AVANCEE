@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TRAVAIL_PROGRAMMATION_AVANCEE
@@ -84,6 +85,13 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
                 textBox1.Text = selectedRow.Cells[1].Value.ToString(); // la on passe dans chaque champ la  valeur y relatif
                 textBox2.Text = selectedRow.Cells[2].Value.ToString(); // la on passe dans chaque champ la  valeur y relatif
             }
+        }
+
+        private void modif_Click(object sender, EventArgs e)
+        {
+            string proIdDelete = Interaction.InputBox("ENTRER L'IDENTIFIANT DU PRODUIT A SUPPRIMER");
+            multiFonctions("delete from Produits where IdProduit = '"+ proIdDelete +"' ");
+            multiFonctions("select * from Produits");
         }
     }
 }

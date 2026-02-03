@@ -80,8 +80,9 @@
             this.modif.Name = "modif";
             this.modif.Size = new System.Drawing.Size(114, 45);
             this.modif.TabIndex = 2;
-            this.modif.Text = "Modifier";
+            this.modif.Text = "Supprimer";
             this.modif.UseVisualStyleBackColor = false;
+            this.modif.Click += new System.EventHandler(this.modif_Click);
             // 
             // suppr
             // 
@@ -180,9 +181,9 @@
             this.label3.ForeColor = System.Drawing.SystemColors.Control;
             this.label3.Location = new System.Drawing.Point(173, 44);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 18);
+            this.label3.Size = new System.Drawing.Size(138, 18);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Désignation";
+            this.label3.Text = "Identifiant du produit";
             // 
             // Form3
             // 

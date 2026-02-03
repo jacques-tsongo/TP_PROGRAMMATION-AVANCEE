@@ -192,6 +192,7 @@
             this.addToPanel.TabIndex = 14;
             this.addToPanel.Text = "Ajouter au panier";
             this.addToPanel.UseVisualStyleBackColor = false;
+            this.addToPanel.Click += new System.EventHandler(this.addToPanel_Click);
             // 
             // comboBox2
             // 
@@ -256,6 +257,7 @@
             this.addToList.TabIndex = 16;
             this.addToList.Text = "Ajouter à la liste";
             this.addToList.UseVisualStyleBackColor = false;
+            this.addToList.Click += new System.EventHandler(this.addToList_Click);
             // 
             // dataGridView2
             // 
