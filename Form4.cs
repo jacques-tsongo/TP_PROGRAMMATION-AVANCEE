@@ -145,6 +145,56 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
 
             dataGridView1.Rows.Clear();
         }
+
+        // la fonction qui recupere les donnees pour crystal report
+
+            void RapportClient()
+        {
+            // Requête SQL qui récupère toutes les informations
+            // d'une vente précise (IdVente = 3)
+            // avec les données du client et des produits vendus
+            string req = "\r\nSELECT IdClient AS IdClient,Nom AS Noms,Adresse AS Adresse FROM Clients;";
+
+            // Récupération de la connexion à la base de données
+            SqlConnection con = connexion.GetConnexion();
+
+            // Création de l'adaptateur OLE DB avec la requête SQL
+            // et la connexion à la base de données
+            SqlDataAdapter InvPhisiqueAdapter =
+                new SqlDataAdapter(req, con);
+
+            // Désactivation du timeout pour les requêtes longues
+            InvPhisiqueAdapter.SelectCommand.CommandTimeout = 0;
+
+            // Création du DataSet physique typé
+            // (celui utilisé lors de la conception du rapport Crystal)
+            DataSet ds = new DataSet();
+
+            // Remplissage de la table "DataTableFacture"
+            // avec les données retournées par la requête SQL
+            InvPhisiqueAdapter.Fill(ds.DataTableClient);
+
+            // Instanciation du rapport Crystal
+            CrystalReportRapportClient CFACTT = new CrystalReportRapportClient();
+
+            // Association du DataSet au rapport Crystal
+            CFACTT.SetDataSource(ds);
+
+            // Création du formulaire contenant le CrystalReportViewer
+            FormPetitRapport frm = new FormPetitRapport();
+
+            // Chargement du rapport dans le CrystalReportViewer
+            frm.crystalReportViewer1.ReportSource = CFACTT;
+
+            // Affichage du formulaire contenant le rapport
+            frm.Show();
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     
 }
