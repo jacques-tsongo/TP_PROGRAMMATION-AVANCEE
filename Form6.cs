@@ -16,5 +16,20 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
         {
             InitializeComponent();
         }
+
+        public static bool IsFormOpen(Type formType)
+        {
+            return false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CrystalReport2 crystal = new CrystalReport2();
+
+            // recuperation de la connection a la db
+            connexionDB conn = new connexionDB();
+            conn.GetConnexion();
+
+        }
     }
 }
