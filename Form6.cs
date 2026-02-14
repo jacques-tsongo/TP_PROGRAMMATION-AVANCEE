@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace TRAVAIL_PROGRAMMATION_AVANCEE
 {
@@ -27,8 +29,10 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
             CrystalReport2 crystal = new CrystalReport2();
 
             // recuperation de la connection a la db
-            connexionDB conn = new connexionDB();
-            conn.GetConnexion();
+            SqlConnection conn = new SqlConnection();
+           // conn.ConnectionString = ConfigurationManager.ConnectionStrings[""].toString();
+
+           
 
         }
     }
