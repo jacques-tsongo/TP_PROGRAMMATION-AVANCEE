@@ -19,6 +19,7 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
             InitializeComponent();
         }
 
+
         public static bool IsFormOpen(Type formType)
         {
             return false;
@@ -26,14 +27,17 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CrystalReport2 crystal = new CrystalReport2();
-
-            // recuperation de la connection a la db
-            SqlConnection conn = new SqlConnection();
-           // conn.ConnectionString = ConfigurationManager.ConnectionStrings[""].toString();
-
-           
-
+                try
+                {
+                    // 1️⃣ Création du rapport
+                    CrystalReport2 rapport = new CrystalReport2(); // 2️⃣ Chargement du rapport dans le CrystalReportViewer
+                    crystalReportViewer1.ReportSource = rapport; // 3️⃣ Rafraîchir l'affichage crystalReportViewer1 . Actualiser ();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur : " + ex.Message);
+                    // }  
+                }
         }
     }
 }

@@ -131,6 +131,7 @@ namespace TRAVAIL_PROGRAMMATION_AVANCEE
         }
 
 
+
         // la creation de la varaible de connexion
         SqlConnection connexion= new SqlConnection();
         private void Form1_Load(object sender, EventArgs e)
